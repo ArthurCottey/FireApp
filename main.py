@@ -1,6 +1,5 @@
 from Class.User import User
-from CRUD.UsersCRUD import add_user
+import uuid
+from CRUD.UsersCRUD import *
 
-
-
-add_user(User('COTTEY', 'Arthur', '12/11/2003'))
+get_users()

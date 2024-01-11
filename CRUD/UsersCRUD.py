@@ -9,3 +9,19 @@ def add_user(user):
         'name': user.get_name(),
         'dateOfBirth': user.get_birth_date()
     })
+
+def get_users():
+    db = database()
+    list_users = []
+    collection_users = db.collection('users')
+    users = collection_users.get()
+    for user in users:
+        data = user.to_dict()
+        new_user = User(data.get('id'), data.get('firstName'), data.get('name'), data.get('dateOfBirth'))
+        list_users.append(new_user)
+        del new_user
+    return list_users
+
+
+
+
