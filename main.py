@@ -1,16 +1,20 @@
-# This is a sample Python script.
+from Class.User import User
+import uuid
+from CRUD.UsersCRUD import *
 
-# Press Maj+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+list_users = get_users()
+
+print("Avant suppression")
+for user in list_users:
+    print("User info : ",user.get_name()," ",user.get_first_name()," ",user.get_birth_date())
 
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+print("Suppression")
+for user in list_users:
+    if user.get_id() == 'fu58WJo0MTiDxrDU299Y':
+        print("User info : ",user.get_name()," ",user.get_first_name()," ",user.get_birth_date())
+        delete_users(user)
 
-
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+print("Après suppression")
+for user in list_users:
+    print("User info : ",user.get_id(),user.get_name()," ",user.get_first_name()," ",user.get_birth_date())
