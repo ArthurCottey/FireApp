@@ -1,4 +1,5 @@
-class Identity:
+class User:
+
     def __init__(self, id, first_name, name, date_of_birth):
         self.id = id
         self.first_name = first_name
