@@ -1,7 +1,7 @@
 from Database.Database import database
 from Class.User import User
 
-def addUser(user):
+def add_user(user):
     db = database()
     db.collection('users').add({
         'id': user.get_id(),

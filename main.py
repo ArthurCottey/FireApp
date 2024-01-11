@@ -1,6 +1,6 @@
 from Class.User import User
-from CRUD.UsersCRUD import addUser
+from CRUD.UsersCRUD import add_user
 
 
 
-addUser(User('COTTEY', 'Arthur', '12/11/2003'))
+add_user(User('COTTEY', 'Arthur', '12/11/2003'))
