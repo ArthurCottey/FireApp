@@ -17,11 +17,15 @@ def get_users():
     users = collection_users.get()
     for user in users:
         data = user.to_dict()
-        new_user = User(data.get('id'), data.get('firstName'), data.get('name'), data.get('dateOfBirth'))
+        new_user = User(user.id, data.get('firstName'), data.get('name'), data.get('dateOfBirth'))
         list_users.append(new_user)
         del new_user
     return list_users
 
+def delete_users(user):
+    db = database()
+    collection_users = db.collection('users')
+    collection_users.document(user.get_id()).delete()
 
 
 
