@@ -3,7 +3,7 @@ import uuid
 class User:
 
     def __init__(self, first_name, name, date_of_birth):
-        self.id = uuid.uuid4()
+        self.id = str(uuid.uuid4())
         self.first_name = first_name
         self.name = name
         self.birth_date = date_of_birth

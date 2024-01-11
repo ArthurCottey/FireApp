@@ -1,5 +1,6 @@
 from Class.User import User
-from Database.Database import database
+from CRUD.UsersCRUD import addUser
 
-db = database()
 
+
+addUser(User('COTTEY', 'Arthur', '12/11/2003'))
