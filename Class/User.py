@@ -1,11 +1,10 @@
 class User:
 
     #region Constructor
-    def __init__(self, id, first_name, name, date_of_birth):
+    def __init__(self, id, first_name, name):
         self.__id = id
-        self.__first_name = first_name
-        self.__name = name
-        self.__birth_date = date_of_birth
+        self.__first_name = first_name.upper()
+        self.__name = name.capitalize()
     #endregion
 
     # region Getter & setter (id)
@@ -30,12 +29,4 @@ class User:
 
     def get_name(self):
         return self.__name
-    # endregion
-
-    # region Getter & setter (birth_date)
-    def set_birth_date(self, birth_date):
-        self.__birth_date = birth_date
-
-    def get_birth_date(self):
-        return self.__birth_date
     # endregion
