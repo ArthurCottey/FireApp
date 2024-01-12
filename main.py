@@ -4,7 +4,7 @@ from CRUD.UsersCRUD import *
 
 list_users = []
 
-list_users.append(update_user('As63f8vEQaZVnhMpnnCI', 'COTTEY', 'Arthur'))
+delete_user('As63f8vEQaZVnhMpnnCI')
 
 for user in list_users:
     print(user.get_id(), " ", user.get_name(), " ", user.get_first_name())

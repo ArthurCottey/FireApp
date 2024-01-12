@@ -49,3 +49,9 @@ def update_user(user_id, first_name, name):
     user_updated = User(user_update.id, user_data['firstName'], user_data['name'])
     return user_updated
 #endregion
+
+#region Function delete_user
+def delete_user(user_id):
+    db = database()
+    db.collection('users').document(user_id).delete()
+#endregion
