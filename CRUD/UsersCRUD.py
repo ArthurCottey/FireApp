@@ -32,8 +32,20 @@ def get_user(first_name, name):
     if not users:
         return False
     else:
-        for user in users:
-            user_data = user.to_dict()
-            user_list.append(User(user.id, user_data['firstName'], user_data['name']))
+        user_data = users[0].to_dict()
+        user_list.append(User(users[0].id, user_data['firstName'], user_data['name']))
     return user_list
+#endregion
+
+#region Function update_user
+def update_user(user_id, first_name, name):
+    db = database()
+    db.collection('users').document(user_id).update({
+        'firstName': first_name.upper(),
+        'name': name.capitalize()
+    })
+    user_update = db.collection('users').document(user_id).get()
+    user_data = user_update.to_dict()
+    user_updated = User(user_update.id, user_data['firstName'], user_data['name'])
+    return user_updated
 #endregion
