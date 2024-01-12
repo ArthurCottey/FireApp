@@ -26,15 +26,14 @@ def get_users():
 
 #region Function get_user
 def get_user(first_name, name):
-    user_list = []
     db = database()
     users = db.collection('users').where(filter=FieldFilter('firstName', '==', first_name)).where(filter=FieldFilter('name', '==', name)).get()
     if not users:
         return False
     else:
         user_data = users[0].to_dict()
-        user_list.append(User(users[0].id, user_data['firstName'], user_data['name']))
-    return user_list
+        user = User(users[0].id, user_data['firstName'], user_data['name'])
+    return user
 #endregion
 
 #region Function update_user
