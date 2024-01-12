@@ -1,6 +1,5 @@
-from google.cloud.firestore_v1 import FieldFilter
-
 from Database.Database import database
+from google.cloud.firestore_v1 import FieldFilter
 from Class.User import User
 
 #region Function add_user
