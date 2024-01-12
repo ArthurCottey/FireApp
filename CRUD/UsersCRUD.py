@@ -1,3 +1,5 @@
+from google.cloud.firestore_v1 import FieldFilter
+
 from Database.Database import database
 from Class.User import User
 
@@ -23,4 +25,16 @@ def get_users():
     return list_users
 #endregion
 
-
+#region Function get_user
+def get_user(first_name, name):
+    user_list = []
+    db = database()
+    users = db.collection('users').where(filter=FieldFilter('firstName', '==', first_name)).where(filter=FieldFilter('name', '==', name)).get()
+    if not users:
+        return False
+    else:
+        for user in users:
+            user_data = user.to_dict()
+            user_list.append(User(user.id, user_data['firstName'], user_data['name']))
+    return user_list
+#endregion
