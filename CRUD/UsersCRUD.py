@@ -1,31 +1,40 @@
+from google.cloud.firestore_v1 import FieldFilter
+
 from Database.Database import database
 from Class.User import User
 
-def add_user(user):
+#region Function add_user
+def add_user(first_name, name):
     db = database()
-    db.collection('users').add({
-        'id': user.get_id(),
-        'firstName': user.get_first_name(),
-        'name': user.get_name(),
-        'dateOfBirth': user.get_birth_date()
+    data_add = db.collection('users').add({
+        'firstName': first_name.upper(),
+        'name': name.capitalize()
     })
+    user_create = User(data_add[1].id, first_name, name)
+    return user_create
+#endregion
 
+#region Function get_users
 def get_users():
-    db = database()
     list_users = []
-    collection_users = db.collection('users')
-    users = collection_users.get()
-    for user in users:
-        data = user.to_dict()
-        new_user = User(user.id, data.get('firstName'), data.get('name'), data.get('dateOfBirth'))
-        list_users.append(new_user)
-        del new_user
-    return list_users
-
-def delete_users(user):
     db = database()
-    collection_users = db.collection('users')
-    collection_users.document(user.get_id()).delete()
+    users = db.collection('users').get()
+    for user in users:
+        user_data = user.to_dict()
+        list_users.append(User(user.id, user_data['firstName'], user_data['name']))
+    return list_users
+#endregion
 
-
-
+#region Function get_user
+def get_user(first_name, name):
+    user_list = []
+    db = database()
+    users = db.collection('users').where(filter=FieldFilter('firstName', '==', first_name)).where(filter=FieldFilter('name', '==', name)).get()
+    if not users:
+        return False
+    else:
+        for user in users:
+            user_data = user.to_dict()
+            user_list.append(User(user.id, user_data['firstName'], user_data['name']))
+    return user_list
+#endregion

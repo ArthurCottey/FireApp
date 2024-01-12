@@ -1,7 +1,13 @@
+from Config.config import *
 import firebase_admin
 from firebase_admin import credentials, firestore
-cred = credentials.Certificate("Database/fir-app-2a5cd-firebase-adminsdk-opycx-67c2eb2a65.json")
-firebase_admin.initialize_app(cred)
 
+#region Firebase initialization
+__cred = credentials.Certificate(get_firebase_path())
+firebase_admin.initialize_app(__cred)
+#endregion
+
+#region Get Firestore client
 def database():
     return firestore.client()
+#endregion
